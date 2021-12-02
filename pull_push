@@ -1,0 +1,32 @@
+
+>> To clone all repositories at once from GitHub_
+
+	> On Windows and all UNIX/LINUX systems, using Git Bash or any other Terminal, replace YOURUSERNAME by your username and use:
+		
+		CNTX={users|orgs}; NAME={username|orgname}; PAGE=1
+		curl "https://api.github.com/$CNTX/$NAME/repos?page=$PAGE&per_page=100" |
+  		grep -e 'git_url*' |
+  		cut -d \" -f 4 |
+  		xargs -L1 git clone
+  		
+  	> Set CNTX=users and NAME=yourusername, to download all your repositories.
+	> Set CNTX=orgs and NAME=yourorgname, to download all repositories of your organization.
+	
+
+>> To push updates to GitHub_
+
+	> To create a new repository on the command line-
+	
+		echo "# Test" >> file_name
+		git init
+		git add . / file_name 	      (Note: use " . " to push everything in the folder, or use file_name to push a specific file)
+		git commit -m "your_comment_for_commit"
+		git branch -M branch_name
+		git remote add origin link_to_repository
+		git push -u origin branch_name
+		
+	> To push an existing repository from the command line-
+	
+		git remote add origin link_to_repository
+		git branch -M branch_name
+		git push -u origin branch_name
